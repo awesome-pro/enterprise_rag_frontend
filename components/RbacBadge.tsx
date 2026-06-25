@@ -19,11 +19,10 @@ export function RbacBadge({ role, clearances }: { role: string; clearances: stri
       width="w-80"
       content={
         <div className="space-y-2">
-          <p className="text-[13px] font-semibold text-stone-800">Role-based access control</p>
           <p>
-            You&apos;re acting as <span className="font-medium capitalize text-stone-700">{role}</span>.
-            Retrieval is filtered to these access levels <em>before</em> search runs — documents
-            above your clearance are never retrieved, so the model can&apos;t see them.
+            Acting as <span className="font-medium capitalize text-stone-700">{role}</span>. Search
+            is limited to the access levels below, so anything above this clearance is never
+            retrieved. Switch roles to see what changes.
           </p>
           <div className="flex flex-wrap gap-1 pt-0.5">
             {clearances.map((c) => (
@@ -35,9 +34,6 @@ export function RbacBadge({ role, clearances }: { role: string; clearances: stri
               </span>
             ))}
           </div>
-          <p className="text-[11px] text-stone-400">
-            Switch roles above to watch what&apos;s retrievable change in real time.
-          </p>
         </div>
       }
     >

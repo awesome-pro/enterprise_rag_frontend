@@ -69,14 +69,10 @@ export function PipelinePanel({ panel }: { panel: PanelState | null }) {
             align="left"
             width="w-80"
             content={
-              <div className="space-y-1.5">
-                <p className="text-[13px] font-semibold text-stone-800">What you&apos;re seeing</p>
-                <p>
-                  A live trace of every stage your question passes through —
-                  guardrails, RBAC-filtered hybrid search, fusion, cross-encoder
-                  reranking, caching, and answer generation — with per-stage latency.
-                </p>
-              </div>
+              <p>
+                A live trace of how this answer was produced — every stage the
+                query ran through, in order, with its latency.
+              </p>
             }
           />
         </div>
@@ -96,14 +92,11 @@ export function PipelinePanel({ panel }: { panel: PanelState | null }) {
       <div className="card-soft mb-4 rounded-xl p-4">
         <Label
           help={
-            <div className="space-y-1.5">
-              <p className="text-[13px] font-semibold text-stone-800">Access levels for this role</p>
-              <p>
-                Every document has one access level. Retrieval only searches
-                documents whose level is in this list — applied <em>inside</em> the
-                vector and keyword queries, so restricted docs are never seen.
-              </p>
-            </div>
+            <p>
+              The access levels this role can read. Search is filtered to these
+              levels before it runs, so anything above your clearance is never
+              retrieved.
+            </p>
           }
         >
           RBAC clearances
@@ -125,15 +118,10 @@ export function PipelinePanel({ panel }: { panel: PanelState | null }) {
         <div className="card-soft mb-4 rounded-xl p-4">
           <Label
             help={
-              <div className="space-y-1.5">
-                <p className="text-[13px] font-semibold text-stone-800">Stage latency</p>
-                <p>
-                  Each stage of the pipeline, in execution order, with how long it
-                  took. Bars are relative to the slowest stage. A cache hit
-                  short-circuits the rest (embed → retrieval → rerank → generation
-                  are skipped).
-                </p>
-              </div>
+              <p>
+                Time spent in each stage, in run order. Bars are scaled to the
+                slowest stage. On a cache hit, the later stages are skipped.
+              </p>
             }
           >
             Stage latency
@@ -178,14 +166,13 @@ export function PipelinePanel({ panel }: { panel: PanelState | null }) {
             helpSide="top"
             help={
               <div className="space-y-1.5">
-                <p className="text-[13px] font-semibold text-stone-800">Reading this table</p>
                 <ul className="space-y-1">
-                  <li><span className="font-medium text-stone-700">vec</span> — rank from dense (vector) search</li>
-                  <li><span className="font-medium text-stone-700">bm25</span> — rank from keyword search</li>
-                  <li><span className="font-medium text-stone-700">rrf</span> — fused score (0.7 vector / 0.3 keyword)</li>
-                  <li><span className="font-medium text-stone-700">rank</span> — final cross-encoder relevance score</li>
+                  <li><span className="font-medium text-stone-700">vec</span> — rank in vector search</li>
+                  <li><span className="font-medium text-stone-700">bm25</span> — rank in keyword search</li>
+                  <li><span className="font-medium text-stone-700">rrf</span> — fused score (0.7 vector + 0.3 keyword)</li>
+                  <li><span className="font-medium text-stone-700">rank</span> — cross-encoder score, final order</li>
                 </ul>
-                <p>Rows are in final reranked order — compare to vec/bm25 to see the reordering.</p>
+                <p>Rows are sorted by rank. Compare with vec and bm25 to see what the reranker moved.</p>
               </div>
             }
           >

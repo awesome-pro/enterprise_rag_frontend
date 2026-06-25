@@ -32,7 +32,7 @@ export function Tooltip({
       {children}
       <span
         role="tooltip"
-        className={`pointer-events-none absolute z-50 ${sideCls} ${alignCls} ${width} rounded-xl border border-stone-200 bg-white p-3 text-left text-xs leading-relaxed text-stone-600 opacity-0 shadow-lg transition-opacity duration-150 group-hover/tt:opacity-100`}
+        className={`pointer-events-none absolute z-50 ${sideCls} ${alignCls} ${width} rounded-xl border border-stone-200 bg-white p-3 text-left text-xs font-normal normal-case leading-relaxed tracking-normal text-stone-600 opacity-0 shadow-lg transition-opacity duration-150 group-hover/tt:opacity-100`}
       >
         {content}
       </span>

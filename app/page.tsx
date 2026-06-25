@@ -150,7 +150,6 @@ export default function Home() {
 
   return (
     <div className="flex h-screen flex-col">
-      <DemoNotice />
       <header className="z-10 flex items-center justify-between border-b border-stone-200/70 bg-white/80 px-6 py-3.5 backdrop-blur-md">
         <div className="flex items-center gap-3">
           <h1 className="text-[15px] font-semibold tracking-tight text-stone-800">
